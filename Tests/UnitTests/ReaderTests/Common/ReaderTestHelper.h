@@ -126,9 +126,24 @@ struct ReaderFixture
         fprintf(stderr, "Current working directory is now: %s\n", boost::filesystem::current_path().generic_string().c_str());
     }
 
+    void RemoveIndexCacheFiles() 
+    {
+        const auto& pwd = boost::filesystem::current_path();
+        for (boost::filesystem::directory_iterator itr(pwd); itr != boost::filesystem::directory_iterator(); ++itr)
+        {
+            if (is_regular_file(itr->status()) && itr->path().extension() == ".cache")
+            {
+                boost::filesystem::remove(itr->path());
+            }
+        }
+    }
+
     ~ReaderFixture()
     {
         BOOST_TEST_MESSAGE("Teardown fixture");
+        BOOST_TEST_MESSAGE("Removing index cache files");
+        RemoveIndexCacheFiles();
+
         BOOST_TEST_MESSAGE("Reverting current path to: " + m_initialWorkingPath);
         fprintf(stderr, "Set current path to: %s\n", m_initialWorkingPath.c_str());
         boost::filesystem::current_path(m_initialWorkingPath);
