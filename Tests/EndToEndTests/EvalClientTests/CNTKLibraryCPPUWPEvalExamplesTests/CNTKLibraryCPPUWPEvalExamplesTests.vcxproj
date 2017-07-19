@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" InitialTargets="CheckDependencies" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <ProjectGuid>{d5cb8825-0d1f-4940-9906-9bd87614b24e}</ProjectGuid>
     <RootNamespace>UnitTestApp</RootNamespace>
@@ -119,4 +119,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <Target Name="CheckDependencies">
+    <Error Condition="'$(CNTK_ENABLE_UWP)'!='true' And ('$(Configuration)' == 'Release_UWP' Or '$(Configuration)' == 'Debug_UWP')" Text="Cannot build UWP configuration. Must set CNTK_ENABLE_UWP to true and install Windows SDK for UWP. See https://docs.microsoft.com/cognitive-toolkit/Setup-UWP-Build-on-Windows for details." />
+  </Target>
 </Project>
