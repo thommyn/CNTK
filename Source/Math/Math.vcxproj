@@ -255,6 +255,5 @@
     <Error Condition="'$(MathLibrary)' == 'OpenBLAS' And '$(CNTK_OPENBLAS_PATH)' == ''" Text="CNTK custom OpenBLAS location not specified, see https://docs.microsoft.com/cognitive-toolkit/Setup-UWP-Build-on-Windows for instructions." />
     <Error Condition="'$(MathLibrary)' == 'OpenBLAS' And !Exists('$(CNTKCustomOpenBLASPath)')" Text="CNTK custom OpenBLAS version $(CNTKCustomOpenBLASVersion) not found. See https://docs.microsoft.com/cognitive-toolkit/Setup-UWP-Build-on-Windows for instructions." />
     <Error Condition="!$(HasBoost)" Text="The Boost library is required to build. Please see https://docs.microsoft.com/en-us/cognitive-toolkit/Setup-CNTK-on-Windows#boost for installation instructions." />
-    <Error Condition="'$(CNTK_ENABLE_UWP)'!='true' And ('$(Configuration)' == 'Release_UWP' Or '$(Configuration)' == 'Debug_UWP')" Text="Cannot build UWP configuration. Must set CNTK_ENABLE_UWP to true and install Windows SDK for UWP. See https://docs.microsoft.com/cognitive-toolkit/Setup-UWP-Build-on-Windows for details." />
   </Target>
 </Project>
