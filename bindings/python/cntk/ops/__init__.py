@@ -1873,6 +1873,7 @@ def transpose(x, perm, name=''):
     if type(perm) in [int, Axis]:
         raise TypeError('transpose expects a permutation; to swap two axes use swapaxes')
 
+
     def _count_nr_of_unflattened_axes_(perm):
         perm_len=len(perm)
         if perm_len == 0: return 0
@@ -1889,6 +1890,7 @@ def transpose(x, perm, name=''):
     if _count_nr_of_unflattened_axes_(perm) <= 5:
         perm = [Axis(p) for p in sanitize_permutation(perm)]
         return cntk_py.transpose(x, perm, name)
+
 
     # BEGIN of the alternative routine to perform a transpose with more than 5 unflattened axes
     # the resulting functions may be accumulated in an as_block to apply "name" correctly and hide the output from the user!
@@ -1911,6 +1913,7 @@ def transpose(x, perm, name=''):
             # print(current_permutation)
 
     return alias(tensor, "End_tranpose_" + str(perm)+ (("_"+name)if name is not None else ""))
+
 
 
 @typemap
