@@ -23,9 +23,9 @@ VSTEST_CONSOLE=$(cygpath -au "$VS140COMNTOOLS\\..\\IDE\\CommonExtensions\\Micros
 test -x "$VSTEST_CONSOLE" || exit $?
 
 # Use pretrained model
-# TODO: Use model file in Documents directory, instead of in appx bundle.
-# MODEL_FILE_DIR=`cygpath -au "My Documents")
-# cp $TEST_DATA_DIR/PreTrainedModels/EvalModels/01_OneHidden $MODEL_FILE_DIR || exit $?
+MODEL_FILE_DIR=$(cygpath -au "$HOMEPATH\\Documents")
+cp $TEST_DATA_DIR/PreTrainedModels/EvalModels/01_OneHidden $MODEL_FILE_DIR/01_OneHidden || exit $?
+ls $MODEL_FILE_DIR
 
 # Set CUDA_VISIBLE_DEVICES to exclude all gpu if running on cpu device
 [ "$TEST_DEVICE" == "cpu" ] && export CUDA_VISIBLE_DEVICES=-1
@@ -33,11 +33,11 @@ test -x "$VSTEST_CONSOLE" || exit $?
 "$VSTEST_CONSOLE" /inIsolation /Platform:x64 $(cygpath -aw "$TEST_BIN_DIR/CNTKLibraryCPPUWPEvalExamplesTests/CNTKLibraryCPPUWPEvalExamplesTests_1.0.1.0_x64_"$TEST_FLAVOR"_UWP.appx") || exit $?
 
 
-# TODO Delete the model file in Documents directory
-#rm -rf $MODEL_FILE_DIR/01_OneHidden || exit $?
-#if [[ -f "$MODEL_FILE_DIR/01_OneHidden" ]]; then
-#  echo "Cannot remove the model file $MODEL_FILE_DIR/01_OneHidden"
-#  exit 1
-#fi
+rm -rf $MODEL_FILE_DIR/01_OneHidden || exit $?
+if [[ -f "$MODEL_FILE_DIR/01_OneHidden" ]]; then
+  echo "Failed to delete the model file $MODEL_FILE_DIR/01_OneHidden"
+  exit 1
+fi
+ls $MODEL_FILE_DIR
   
 exit 0
