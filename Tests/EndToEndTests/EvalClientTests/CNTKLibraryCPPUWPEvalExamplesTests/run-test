@@ -30,8 +30,7 @@ test -x "$VSTEST_CONSOLE" || exit $?
 # Set CUDA_VISIBLE_DEVICES to exclude all gpu if running on cpu device
 [ "$TEST_DEVICE" == "cpu" ] && export CUDA_VISIBLE_DEVICES=-1
 
-# TODO: the app package name is embedded with "release/debug"...
-"$VSTEST_CONSOLE" /inIsolation /Platform:x64 $(cygpath -aw "$TEST_BIN_DIR/CNTKLibraryCPPUWPEvalExamplesTests/CNTKLibraryCPPUWPEvalExamplesTests_1.0.1.0_x64_Release_UWP.appx") || exit $?
+"$VSTEST_CONSOLE" /inIsolation /Platform:x64 $(cygpath -aw "$TEST_BIN_DIR/CNTKLibraryCPPUWPEvalExamplesTests/CNTKLibraryCPPUWPEvalExamplesTests_1.0.1.0_x64_"$TEST_FLAVOR"_UWP.appx") || exit $?
 
 
 # TODO Delete the model file in Documents directory
