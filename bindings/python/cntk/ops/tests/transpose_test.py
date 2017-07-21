@@ -16,7 +16,9 @@ def test_transpose():
 
     for repeat in range(repeat_for):
         for i in range(1, 12):
+            print(i)
             permutation = np.random.permutation(i + 1)
+            permutation = [int(p) for p in permutation]
 
             shape = [np.random.randint(2, 5) for _ in range(i + 1)]
             entries = np.product(shape)
@@ -25,6 +27,9 @@ def test_transpose():
             data.shape = shape
 
             np_transposed = np.transpose(np.copy(data), np.copy(permutation))
-            by_transposeCNTK = transpose(np.ascontiguousarray(np.copy(data)), np.copy(permutation)).eval()
+            by_transposeCNTK = transpose(np.ascontiguousarray(data), permutation).eval()
 
             assert np.alltrue(np_transposed == by_transposeCNTK)
+
+if __name__ == "__main__":
+    test_transpose()
