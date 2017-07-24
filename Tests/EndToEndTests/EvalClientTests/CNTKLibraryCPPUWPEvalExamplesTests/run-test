@@ -24,7 +24,7 @@ test -x "$VSTEST_CONSOLE" || exit $?
 
 # Use pretrained model
 MODEL_FILE=$(cygpath -au "$USERPROFILE\\Documents\\01_OneHidden.model")
-cp $TEST_DATA_DIR/PreTrainedModels/EvalModels/01_OneHidden "$MODEL_FILE" || exit $?
+cp $TEST_DATA_DIR/PreTrainedModels/EvalModels/01_OneHidden.model "$MODEL_FILE" || exit $?
 
 # Set CUDA_VISIBLE_DEVICES to exclude all gpu if running on cpu device
 [ "$TEST_DEVICE" == "cpu" ] && export CUDA_VISIBLE_DEVICES=-1
