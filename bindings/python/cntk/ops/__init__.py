@@ -1876,7 +1876,6 @@ def transpose(x, perm, name=''):
     return transpose(x, perm, name)
 
 
-
 @typemap
 def swapaxes(x, axis1=0, axis2=1, name=''):
     '''
