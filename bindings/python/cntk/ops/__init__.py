@@ -1873,7 +1873,6 @@ def transpose(x, perm, name=''):
     if type(perm) in [int, Axis]:
         raise TypeError('transpose expects a permutation; to swap two axes use swapaxes')
 
-
     def _count_nr_of_unflattened_axes_(perm):
         perm_len=len(perm)
         if perm_len == 0: return 0
