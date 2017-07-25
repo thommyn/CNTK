@@ -39,7 +39,7 @@
 
   <PropertyGroup Condition="$(IsUWP)">
     <MathLibrary>OpenBLAS</MathLibrary>
-    <CNTKCustomOpenBLASVersion>1</CNTKCustomOpenBLASVersion>
+    <CNTKCustomOpenBLASVersion>2</CNTKCustomOpenBLASVersion>
     <MathLibraryName>OpenBLAS library (Version: $(CNTKCustomOpenBLASVersion))</MathLibraryName>
     <CNTKCustomOpenBLASPath>$(CNTK_OPENBLAS_PATH)\$(CNTKCustomOpenBLASVersion)</CNTKCustomOpenBLASPath>    
     <MathIncludePath>$(CNTKCustomOpenBLASPath)</MathIncludePath>
